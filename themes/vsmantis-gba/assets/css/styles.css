@@ -184,16 +184,6 @@
 
 /* CUSTOM STYLES */
 
-/* hebrew */
-@font-face {
-  font-family: 'Heebo';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/heebo/v10/NGSpv5_NC0k9P_v6ZUCbLRAHxK1EVyusd0mm_00.woff2) format('woff2');
-  unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
-}
-/* latin */
 @font-face {
   font-family: 'Heebo';
   font-style: normal;
@@ -202,7 +192,14 @@
   src: url(https://fonts.gstatic.com/s/heebo/v10/NGSpv5_NC0k9P_v6ZUCbLRAHxK1EVyusdUmm.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-body { background-color: rgba(0,0,0,0%); margin: 0px auto; overflow: hidden; color: black; font-family: "Heebo", sans-serif !important; }
+
+body { 
+  background-color: rgba(0,0,0,0%); 
+  margin: 0px auto; 
+  overflow: hidden; 
+  color: black; 
+  font-family: "Heebo", sans-serif !important; 
+}
 .pokemon__slot {
   margin-top: 0px;
   position: relative;
@@ -229,7 +226,7 @@ body { background-color: rgba(0,0,0,0%); margin: 0px auto; overflow: hidden; col
   top: 0px;
   left: -10px;
   font-weight: 600;
-  background-image: url('https://i.imgur.com/BSxUKtV.png');
+  background-image: url(../images/party/header.png);
   background-size: cover;
   background-position-x: 10px;
   width: 134px;
@@ -244,7 +241,7 @@ body { background-color: rgba(0,0,0,0%); margin: 0px auto; overflow: hidden; col
 .pokemon__image {
   transform: scale(0.50);
   top: 2px;
-  background-image: url('https://i.imgur.com/JTw1hGQ.png');
+  background-image: url(../images/party/pokeball.png);
   background-size: cover;
   height: 127px;
   filter: saturate(120%);
@@ -291,7 +288,7 @@ body { background-color: rgba(0,0,0,0%); margin: 0px auto; overflow: hidden; col
 .pokemon__nick-shiny {
   position: absolute;
   color: rgba(0,0,0,0%);
-  background-image: url('https://i.imgur.com/Tt3hZ9W.png');
+  background-image: url(../images/party/shiny.png);
   background-size: cover;
   height: 18px;
   width: 18px;
@@ -352,14 +349,15 @@ body { background-color: rgba(0,0,0,0%); margin: 0px auto; overflow: hidden; col
 /* TYPES */
 
 .pokemon__bar > span {
-  color: rgba(0,0,0,0) !important;
-  -webkit-text-stroke: 0px rgba(0, 0, 0, 0) !important;
+  color: rgba(0, 0, 0, 0%) !important;
+  -webkit-text-stroke: 0px rgba(0, 0, 0, 0%) !important;
   -webkit-text-shadow: 0px 0px 0px 0px !important;
-  background-color: rgba(0,0,0,0) !important;
+  background-color: rgba(0, 0, 0, 0%) !important;
   font-size: 0;
   border: none;
   border-radius: 12px;
 }
+
 .pokemon__types {
   width: 18px !important;
   height: 18px !important;
@@ -368,32 +366,35 @@ body { background-color: rgba(0,0,0,0%); margin: 0px auto; overflow: hidden; col
   float: none;
   display: block;
 }
+
 .pokemon__types:nth-child(1) {
   top: 1px;
   left: 13px;
 }
+
 .pokemon__types:nth-child(2) {
   top: 1px;
   left: 38px;
 }
-.pokemon__types-normal { background-image: url('https://i.imgur.com/rvCXsV5.png'); }
-.pokemon__types-grass { background-image: url('https://i.imgur.com/Rr65AHK.png'); }
-.pokemon__types-fire { background-image: url('https://i.imgur.com/sWi5gy3.png'); }
-.pokemon__types-water { background-image: url('https://i.imgur.com/UCZuF8c.png'); }
-.pokemon__types-electric { background-image: url('https://i.imgur.com/U6oxwmS.png'); }
-.pokemon__types-psychic { background-image: url('https://i.imgur.com/SCrUT2x.png'); }
-.pokemon__types-ice { background-image: url('https://i.imgur.com/iNYOiTx.png'); }
-.pokemon__types-dark { background-image: url('https://i.imgur.com/CMUm5nM.png'); }
-.pokemon__types-dragon { background-image: url('https://i.imgur.com/CXy6VJD.png'); }
-.pokemon__types-fighting { background-image: url('https://i.imgur.com/2Zs1YX6.png'); }
-.pokemon__types-rock { background-image: url('https://i.imgur.com/T0VL4Pe.png'); }
-.pokemon__types-ground { background-image: url('https://i.imgur.com/udPLcIV.png'); }
-.pokemon__types-poison { background-image: url('https://i.imgur.com/ixjaRD9.png'); }
-.pokemon__types-bug { background-image: url('https://i.imgur.com/ZQQgmXh.png'); }
-.pokemon__types-ghost { background-image: url('https://i.imgur.com/WrywOZS.png'); }
-.pokemon__types-fairy { background-image: url('https://i.imgur.com/y0MCN2T.png'); }
-.pokemon__types-flying { background-image: url('https://i.imgur.com/VbFw3EF.png'); }
-.pokemon__types-steel { background-image: url('https://i.imgur.com/1a8pZ5g.png'); }
+
+.pokemon__types-normal   { background-image: url('../images/party/type/type-normal.png');   }
+.pokemon__types-grass    { background-image: url('../images/party/type/type-grass.png');    }
+.pokemon__types-fire     { background-image: url('../images/party/type/type-fire.png');     }
+.pokemon__types-water    { background-image: url('../images/party/type/type-water.png');    }
+.pokemon__types-electric { background-image: url('../images/party/type/type-electric.png'); }
+.pokemon__types-psychic  { background-image: url('../images/party/type/type-psychic.png');  }
+.pokemon__types-ice      { background-image: url('../images/party/type/type-ice.png');      }
+.pokemon__types-dark     { background-image: url('../images/party/type/type-dark.png');     }
+.pokemon__types-dragon   { background-image: url('../images/party/type/type-dragon.png');   }
+.pokemon__types-fighting { background-image: url('../images/party/type/type-fighting.png'); }
+.pokemon__types-rock     { background-image: url('../images/party/type/type-rock.png');     }
+.pokemon__types-ground   { background-image: url('../images/party/type/type-ground.png');   }
+.pokemon__types-poison   { background-image: url('../images/party/type/type-poison.png');   }
+.pokemon__types-bug      { background-image: url('../images/party/type/type-bug.png');      }
+.pokemon__types-ghost    { background-image: url('../images/party/type/type-ghost.png');    }
+.pokemon__types-fairy    { background-image: url('../images/party/type/type-fairy.png');    }
+.pokemon__types-flying   { background-image: url('../images/party/type/type-flying.png');   }
+.pokemon__types-steel    { background-image: url('../images/party/type/type-steel.png');    }
 
 /* STATUS CONDITIONS */
 
@@ -407,50 +408,41 @@ body { background-color: rgba(0,0,0,0%); margin: 0px auto; overflow: hidden; col
   bottom: 14px;
   animation: status-container-animation 5s infinite linear;
 }
+
 @keyframes status-container-animation {
-   0% { opacity: 0%; }
-  20% { opacity: 0%; }
-  25% { opacity: 100%; }
-  75% { opacity: 100%; }
-  80% { opacity: 0%; }
-  100% { opacity: 0%; }
+  0%   { opacity: 0%;   }
+  20%  { opacity: 0%;   }
+  25%  { opacity: 100%; }
+  75%  { opacity: 100%; }
+  80%  { opacity: 0%;   }
+  100% { opacity: 0%;   }
 }
+
 .pokemon__status.has-status-condition {
   display: block;
 }
+
 .status {
-  color: rgba(0,0,0,0%);
+  color: rgba(0, 0, 0, 0%);
   width: 58px;
   height: 18px;
   background-size: cover;
   animation: status-animation 5s infinite linear;
 } 
+
 @keyframes status-animation {
-  0% { opacity: 0%; }
-  25% { opacity: 0%; }
-  30% { opacity: 100%; }
-  70% { opacity: 100%; }
-  75% { opacity: 0%; }
-  100% { opacity: 0%; }
+  0%   { opacity: 0%;   }
+  25%  { opacity: 0%;   }
+  30%  { opacity: 100%; }
+  70%  { opacity: 100%; }
+  75%  { opacity: 0%;   }
+  100% { opacity: 0%;   }
 }
-.status.status-burned {
-  background-image: url('../images/status-burned.png');
-}
-.status.status-frozen {
-  background-image: url('../images/status-frozen.png');
-}
-.status.status-paralysis {
-  background-image: url('../images/status-paralysis.png');
-}
-.status.status-asleep {
-  background-image: url('../images/status-asleep.png');
-}
-.status.status-poisoned {
-  background-image: url('../images/status-poisoned.png');
-}
-.status.status-badly-poisoned {
-  background-image: url('../images/status-badly-poisoned.png');
-}
-.status.status-fainted {
-  background-image: url('../images/status-fainted.png');
-}
+
+.status.status-burned         { background-image: url('../images/party/status/status-burned.png');         }
+.status.status-frozen         { background-image: url('../images/party/status/status-frozen.png');         }
+.status.status-paralysis      { background-image: url('../images/party/status/status-paralysis.png');      }
+.status.status-asleep         { background-image: url('../images/party/status/status-asleep.png');         }
+.status.status-poisoned       { background-image: url('../images/party/status/status-poisoned.png');       }
+.status.status-badly-poisoned { background-image: url('../images/party/status/status-badly-poisoned.png'); }
+.status.status-fainted        { background-image: url('../images/party/status/status-fainted.png');        }
