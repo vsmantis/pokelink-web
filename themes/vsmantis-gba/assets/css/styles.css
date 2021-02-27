@@ -252,11 +252,34 @@ body {
   from { transform: rotate(0deg) scale(0.50); }
   to { transform: rotate(359deg) scale(0.50); }
 }
-.pokemon__image>img {
+.pokemon__image > img {
   margin-top: 0px;
   transform: translate(-50%, -50%) scale(1.1);
-  /*animation: rotate-image-icon 30s infinite linear;*/
+  perspective: 1000px;
 }
+
+.pokemon__image.isDamaged > img {
+  animation: shake 1s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-49%, -50%, 0) scale(1.1);
+  }
+  
+  20%, 80% {
+    transform: translate3d(-52%, -50%, 0) scale(1.1);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-46%, -50%, 0) scale(1.1);
+  }
+
+  40%, 60% {
+    transform: translate3d(-54%, -50%, 0) scale(1.1);
+  }
+}
+
 .pokemon__image>img.pokemon-fainted {
   filter: saturate(0%) contrast(50%) brightness(150%);
 }
@@ -409,17 +432,23 @@ body {
   animation: status-container-animation 5s infinite linear;
 }
 
+.pokemon__status.fainted {
+  display: block;
+  animation: none;
+}
+
 @keyframes status-container-animation {
-  0%   { opacity: 0%;   }
-  20%  { opacity: 0%;   }
-  25%  { opacity: 100%; }
-  75%  { opacity: 100%; }
-  80%  { opacity: 0%;   }
-  100% { opacity: 0%;   }
+  0%   { opacity: 0;   }
+  20%  { opacity: 0;   }
+  25%  { opacity: 1; }
+  75%  { opacity: 1; }
+  80%  { opacity: 0;   }
+  100% { opacity: 0;   }
 }
 
 .pokemon__status.has-status-condition {
   display: block;
+  opacity: 0;
 }
 
 .status {
@@ -431,12 +460,12 @@ body {
 } 
 
 @keyframes status-animation {
-  0%   { opacity: 0%;   }
-  25%  { opacity: 0%;   }
-  30%  { opacity: 100%; }
-  70%  { opacity: 100%; }
-  75%  { opacity: 0%;   }
-  100% { opacity: 0%;   }
+  0%   { opacity: 0;   }
+  25%  { opacity: 0;   }
+  30%  { opacity: 1; }
+  70%  { opacity: 1; }
+  75%  { opacity: 0;   }
+  100% { opacity: 0;   }
 }
 
 .status.status-burned         { background-image: url('../images/party/status/status-burned.png');         }
@@ -444,5 +473,5 @@ body {
 .status.status-paralysis      { background-image: url('../images/party/status/status-paralysis.png');      }
 .status.status-asleep         { background-image: url('../images/party/status/status-asleep.png');         }
 .status.status-poisoned       { background-image: url('../images/party/status/status-poisoned.png');       }
-.status.status-badly-poisoned { background-image: url('../images/party/status/status-badly-poisoned.png'); }
-.status.status-fainted        { background-image: url('../images/party/status/status-fainted.png');        }
+.status.status-badly-poisoned { background-image: url('../images/party/status/status-badly-poisoned.png');           }
+.status.status-fainted        { background-image: url('../images/party/status/status-fainted.png'); animation: none; }
