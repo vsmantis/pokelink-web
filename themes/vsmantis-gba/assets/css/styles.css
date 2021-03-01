@@ -15,10 +15,18 @@ html, body {
     height: 164px;
     overflow: hidden;
     float: left;
-    margin: 0px 7px 7px 0px;
+    margin: 0px 8px 8px 0px;
     background-color: white;
     border-radius: 15px;
     box-shadow: 0px 4px 4px 0px rgb(0, 0, 0, 20%);
+}
+
+.pokemon__slot:nth-child(3), .pokemon__slot:nth-child(6) {
+    margin-right: 0px;
+}
+
+.pokemon__slot:nth-child(4) {
+    clear: left;
 }
 
 .pokemon__slot.pokemon__empty {
