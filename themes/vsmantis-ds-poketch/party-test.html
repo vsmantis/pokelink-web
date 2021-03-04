@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<meta name="robots" content="noindex">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Pkmn</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="./assets/css/styles.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@600&display=swap" rel="stylesheet">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139026483-5"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-139026483-5');
+        </script>
+    </head>
+
+    <body>
+        <div id="party" data-user="vsmantis" class="theme__dar">
+            <div style="display: none" class="pokes browser-connected">
+                <div class="pokemon__list">
+                    <div class="pokemon__slot">
+                        <div>
+                            <div class="pokemon__level">Lv. 20</div> 
+                            <div class="pokemon__image isDamaged">
+                                <img src="https://assets.pokelink.xyz/assets/sprites/pokemon/trozei/405.png">
+                            </div> 
+                            <div class="pokemon__nickname">LUXRAY</div> 
+                            <div class="pokemon__hp-bar">
+                                <div style="height: 16px;" class="progress">
+                                    <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="187" class="progress-bar yellow" style="width: 46.52%;"></div>
+                                </div>
+                                <div style="height: 4px;" class="exp">
+                                    <div role="expbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="187" class="exp-bar" style="width: 46.52%;"></div>
+                                </div>
+                                <div class="pokemon__hp"><span class="text">87 / 187</span></div>
+                            </div> 
+                            <div class="pokemon__info">
+                                <img class="pokemon__type" src="./assets/images/party/type/type-electric.png"/>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="pokemon__slot">
+                        <div>
+                            <div class="pokemon__level">Lv. 61</div> 
+                            <div class="pokemon__image">
+                                <img src="https://assets.pokelink.xyz/assets/sprites/pokemon/trozei/411.png">
+                            </div> 
+                            <div class="pokemon__nickname">BASTIODON</div> 
+                            <div class="pokemon__hp-bar">
+                                <div style="height: 15px;" class="progress">
+                                    <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="261" class="progress-bar red" style="width: 7.66%;"></div>
+                                </div> 
+                                <div style="height: 4px;" class="exp">
+                                    <div role="expbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="187" class="exp-bar" style="width: 46.52%;"></div>
+                                </div>
+                                <div class="pokemon__hp">
+                                    <span class="text">20 / 261</span>
+                                </div>
+                            </div> 
+                            <div class="pokemon__info">
+                                <img class="pokemon__type" src="./assets/images/party/type/type-rock.png"/>
+                                <img class="pokemon__type" src="./assets/images/party/type/type-steel.png"/>
+                                <img class="pokemon__status" src="./assets/images/party/status/status-burned.png"/>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="pokemon__slot">
+                        <div>
+                            <div class="pokemon__level">Lv. 57</div> 
+                            <div class="pokemon__image">
+                                <img src="https://assets.pokelink.xyz/assets/sprites/pokemon/trozei/461.png">
+                            </div> 
+                            <div class="pokemon__nickname">WEAVILE</div> 
+                            <div class="pokemon__hp-bar">
+                                <div style="height: 15px;" class="progress">
+                                    <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="158" class="progress-bar grey" style="width: 0%;"></div>
+                                </div> 
+                                <div style="height: 4px;" class="exp">
+                                    <div role="expbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="187" class="exp-bar" style="width: 46.52%;"></div>
+                                </div>
+                                <div class="pokemon__hp">
+                                    <span class="text">0 / 158</span>
+                                </div>
+                            </div>
+                            <div class="pokemon__info">
+                                <img class="pokemon__type" src="./assets/images/party/type/type-dark.png"/>
+                                <img class="pokemon__type" src="./assets/images/party/type/type-ice.png"/>
+                                <img class="pokemon__status" src="./assets/images/party/status/status-asleep.png"/>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="pokemon__slot">
+                        <div>
+                            <div class="pokemon__level">Lv. 57</div> 
+                            <div class="pokemon__image">
+                                <img src="https://assets.pokelink.xyz/assets/sprites/pokemon/trozei/389.png">
+                            </div> 
+                            <div class="pokemon__nickname">TORTERRA</div> 
+                            <div class="pokemon__hp-bar">
+                                <div style="height: 15px;" class="progress">
+                                    <div role="progressbar" aria-valuenow="154" aria-valuemin="0" aria-valuemax="175" class="progress-bar green" style="width: 88%;"></div>
+                                </div> 
+                                <div style="height: 4px;" class="exp">
+                                    <div role="expbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="187" class="exp-bar" style="width: 46.52%;"></div>
+                                </div>
+                                <div class="pokemon__hp">
+                                    <span class="text">154 / 175</span>
+                                </div>
+                            </div>
+                            <div class="pokemon__info">
+                                <img class="pokemon__type" src="./assets/images/party/type/type-grass.png"/>
+                                <img class="pokemon__type" src="./assets/images/party/type/type-ground.png"/>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="pokemon__slot">
+                        <div>
+                            <div class="pokemon__level">
+                                <span class="level">Lv. 58</span>
+                                <img class="shiny" src="./assets/images/party/shiny.png"/>
+                            </div>
+                            <div class="pokemon__image">
+                                <img src="https://assets.pokelink.xyz/assets/sprites/pokemon/trozei/416.png" class="pokemon-fainted">
+                            </div> 
+                            <div class="pokemon__nickname">VESPIQUEN</div> 
+                            <div class="pokemon__hp-bar">
+                                <div style="height: 15px;" class="progress">
+                                    <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="196" class="progress-bar grey" style="width: 0%;"></div>
+                                </div> 
+                                <div style="height: 4px;" class="exp">
+                                    <div role="expbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="187" class="exp-bar" style="width: 46.52%;"></div>
+                                </div>
+                                <div class="pokemon__hp">
+                                    <span class="text">0 / 196</span>
+                                </div>
+                            </div>
+                            <div class="pokemon__info">
+                                <img class="pokemon__type" src="./assets/images/party/type/type-bug.png"/>
+                                <img class="pokemon__type" src="./assets/images/party/type/type-flying.png"/>
+                                <img class="pokemon__status" src="./assets/images/party/status/status-fainted.png"/>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="pokemon__slot">
+                        <div>
+                            <div class="pokemon__level">Lv. 52</div>
+                            <div class="pokemon__image">
+                                <img src="https://assets.pokelink.xyz/assets/sprites/pokemon/trozei/454.png">
+                            </div> 
+                            <div class="pokemon__nickname">TOXICROAK</div> 
+                            <div class="pokemon__hp-bar">
+                                <div style="height: 15px;" class="progress">
+                                    <div role="progressbar" aria-valuenow="158" aria-valuemin="0" aria-valuemax="166" class="progress-bar green" style="width: 95.1807%;"></div>
+                                </div> 
+                                <div style="height: 4px;" class="exp">
+                                    <div role="expbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="187" class="exp-bar" style="width: 46.52%;"></div>
+                                </div>
+                                <div class="pokemon__hp">
+                                    <span class="text">158 / 166</span>
+                                </div>
+                            </div>
+                            <div class="pokemon__info">
+                                <img class="pokemon__type" src="./assets/images/party/type/type-poison.png"/>
+                                <img class="pokemon__type" src="./assets/images/party/type/type-fighting.png"/>
+                                <img class="pokemon__status" src="./assets/images/party/status/status-paralysis.png"/>
+                            </div>
+                        </div> 
+                    </div>
+                    <!-- <div class="pokemon__slot">
+                        <div>
+                            <div class="pokemon__level">Lv. 53</div>
+                            <div class="pokemon__image">
+                                <img src="https://assets.pokelink.xyz/assets/sprites/pokemon/trozei/701.png">
+                            </div> 
+                            <div class="pokemon__nickname">APOLLO</div> 
+                            <div class="pokemon__hp-bar">
+                                <div style="height: 15px;" class="progress">
+                                    <div role="progressbar" aria-valuenow="172" aria-valuemin="0" aria-valuemax="172" class="progress-bar green" style="width: 100%;"></div>
+                                </div> 
+                                <div class="pokemon__hp">
+                                    <span class="text">172 / 172</span>
+                                </div>
+                            </div> 
+                            <div class="pokemon__bar">
+                                <span class="pokemon__types pokemon__types-fighting" style="background-color: rgb(160, 64, 160);">Poison</span>
+                                <span class="pokemon__types pokemon__types-flying" style="background-color: rgb(168, 144, 240);">Flying</span>
+                            </div> 
+                            <div class="pokemon__status has-status-condition">
+                                <div class="status status-asleep"></div>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="pokemon__slot pokemon__empty">
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <script src="../../assets/js/events.js"></script>
+        <script src="../../assets/libs/collect.min.js"></script>
+        <script src="../../assets/libs/deepmerge.js"></script>
+        <script src="../../assets/libs/color-hash.js"></script>
+
+        <script src="../../assets/data/pokedex.js"></script>
+        <script src="../../assets/data/moves.js"></script>
+        <script src="../../assets/data/gen3_items.js"></script>
+        <script src="../../assets/data/gen4_items.js"></script>
+        <script src="../../assets/data/gen5_items.js"></script>
+        <script src="../../assets/data/gen6_items.js"></script>
+        <script src="../../assets/data/gen7_items.js"></script>
+
+        <script src="../../clientSettings.js"></script>
+        <script src="../../assets/js/defaultSettings.js"></script>
+        <script src="./assets/js/themeSettings.js"></script>
+
+        <script src="./assets/js/components/pokemon-card.js"></script>
+
+        <script src="../../assets/js/helpers.js"></script>
+        <script src="../../assets/js/client.js"></script>
+        <script src="./assets/js/party.js"></script>
+
+    </body>
+</html>
+      
+    
