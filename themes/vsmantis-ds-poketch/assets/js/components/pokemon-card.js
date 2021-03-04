@@ -13,18 +13,19 @@ Vue.component( "pokemon-card", {
                     {{ fixedNickname(pokemon) }}
                 </div>
                 <div class="pokemon__hp-bar" v-if="!getHideSetting('hp')">
-                    <div class="progress" style="height: 15px;">
+                    <div class="progress" style="height: 16px;">
                         <div :class="healthBarClass(pokemon)" v-bind:style="{width: healthBarPercent(pokemon) + '%'}" role="progressbar" :aria-valuenow="pokemon.hp.current" :aria-valuemin="0" :aria-valuemax="pokemon.hp.max"></div>
+                    </div>
+                    <div class="progress" style="height: 14px;">
+                        <div class="exp-bar" v-bind:style="{width: healthBarPercent(pokemon) + '%'}" role="expbar" :aria-valuenow="pokemon.hp.current" :aria-valuemin="0" :aria-valuemax="pokemon.hp.max"></div>
                     </div>
                     <div class="pokemon__hp">
                         <span class="text">{{ pokemon.hp.current }} / {{ pokemon.hp.max }}</span>
                     </div>
                 </div>
-                <div class="pokemon__bar" v-if="!getHideSetting('types')">
-                    <span :class="'pokemon__types pokemon__types-' + type.label.toLowerCase()" v-if="pokemon.types.length != 0" v-for="type in pokemon.types">{{type.label}}</span>
-                </div>
-                <div :class="statusContainerClass(pokemon)" v-if="!getHideSetting('status')">
-                    <div :class="statusClass(pokemon)"></div>
+                <div class="pokemon__info">
+                    <img class="pokemon__type" v-if="pokemon.types.length != 0" v-for="type in pokemon.types" src="./assets/images/party/type/{{type.label}}.png"/>
+                    <img class="pokemon__status" v-if="!hasStatus(pokemon) src="statusImage(pokemon)"/>
                 </div>
             </div>
             <div v-else>
@@ -68,23 +69,33 @@ Vue.component( "pokemon-card", {
         getHideSetting(setting) {
             return settings.theme.hide[setting] || false;
         },
-        statusClass: function(pokemon) {
+        hasStatus: function(pokemon) {
+            var statusClass = this.statusClass(pokemon);
             if (pokemon.hp.current == 0) {
-                return 'status status-fainted';
-            } else if (pokemon.status.brn) {
-                return 'status status-burned';
-            } else if (pokemon.status.fzn) {
-                return 'status status-frozen';
-            } else if (pokemon.status.par) {
-                return 'status status-paralysis';
-            } else if (pokemon.status.psn) {
-                return 'status status-poisoned';
-            } else if (pokemon.status.bps) {
-                return 'status status-badly-poisoned';
-            } else if (pokemon.status.slp) {
-                return 'status status-asleep';
+                return true;
+            } else if (statusClass != '') {
+                return true;
             } else {
-                return 'status status-normal';
+                return false;
+            }
+        },
+        statusImage: function(pokemon) {
+            if (pokemon.hp.current == 0) {
+                return './assets/images/party/status/status-fainted.png';
+            } else if (pokemon.status.brn) {
+                return './assets/images/party/status/status-burned.png';
+            } else if (pokemon.status.fzn) {
+                return './assets/images/party/status/status-frozen.png';
+            } else if (pokemon.status.par) {
+                return './assets/images/party/status/status-paralysis.png';
+            } else if (pokemon.status.psn) {
+                return './assets/images/party/status/status-poisoned.png';
+            } else if (pokemon.status.bps) {
+                return './assets/images/party/status/status-badly-poisoned.png';
+            } else if (pokemon.status.slp) {
+                return './assets/images/party/status/status-asleep.png';
+            } else {
+                return '';
             }
         },
         statusContainerClass: function(pokemon) {
