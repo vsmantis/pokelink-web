@@ -4,8 +4,8 @@ html, body {
     overflow: hidden;
     padding: 0;
     margin: 0;
-    margin: 10px;
-    background-color: black; /*transparent !important; */
+    margin: 0px;
+    background-color: transparent !important;
     color: black;
     font-family: 'Heebo', sans-serif; 
 }
@@ -39,6 +39,11 @@ html, body {
 
 .pokemon__slot.pokemon__empty {
     background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: none;
+}
+
+.theme__dark .pokemon__slot.pokemon__empty {
+    background-color: rgba(255, 255, 255, 0.1);
     box-shadow: none;
 }
 
@@ -105,7 +110,7 @@ html, body {
     filter: saturate(0%) contrast(50%) brightness(130%);
 }
 
-.theme__darnk .pokemon__image > img.pokemon-fainted {
+.theme__dark .pokemon__image > img.pokemon-fainted {
     filter: saturate(0%) contrast(50%) brightness(60%);
 }
 

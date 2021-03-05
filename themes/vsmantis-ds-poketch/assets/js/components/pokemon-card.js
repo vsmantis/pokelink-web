@@ -17,21 +17,18 @@ Vue.component( "pokemon-card", {
                         <div :class="healthBarClass(pokemon)" v-bind:style="{width: healthBarPercent(pokemon) + '%'}" role="progressbar" :aria-valuenow="pokemon.hp.current" :aria-valuemin="0" :aria-valuemax="pokemon.hp.max"></div>
                     </div>
                     <div class="progress" style="height: 14px;">
-                        <div class="exp-bar" v-bind:style="{width: healthBarPercent(pokemon) + '%'}" role="expbar" :aria-valuenow="pokemon.hp.current" :aria-valuemin="0" :aria-valuemax="pokemon.hp.max"></div>
+                        <div class="exp-bar"  v-bind:style="{ width: experienceRemaining(pokemon) }" role="expbar" :aria-valuenow="pokemon.hp.current" :aria-valuemin="0" :aria-valuemax="pokemon.hp.max"></div>
                     </div>
                     <div class="pokemon__hp">
                         <span class="text">{{ pokemon.hp.current }} / {{ pokemon.hp.max }}</span>
                     </div>
                 </div>
                 <div class="pokemon__info">
-                    <img class="pokemon__type" v-if="pokemon.types.length != 0" v-for="type in pokemon.types" src="./assets/images/party/type/{{type.label}}.png"/>
-                    <img class="pokemon__status" v-if="!hasStatus(pokemon) src="statusImage(pokemon)"/>
+                    <img class="pokemon__type" v-if="pokemon.types.length != 0" v-for="type in pokemon.types" :src="typeImage(type)"/>
+                    <img class="pokemon__status" v-if="statusImage(pokemon) != ''" :src="statusImage(pokemon)"/>
                 </div>
             </div>
             <div v-else>
-                <div class="pokemon__image">
-                    <img src="./assets/images/pokeball-icon-22.png"/>
-                </div>
             </div>
         </div>
     `,
@@ -44,6 +41,7 @@ Vue.component( "pokemon-card", {
     },
     methods: {
         imageSource: function(pokemon) {
+            console.log(pokemon);
             return 'https://assets.pokelink.xyz/assets/sprites/pokemon/trozei/' + pokemon.species + '.png';
         },
         healthBarPercent: function(pokemon) {
@@ -69,15 +67,8 @@ Vue.component( "pokemon-card", {
         getHideSetting(setting) {
             return settings.theme.hide[setting] || false;
         },
-        hasStatus: function(pokemon) {
-            var statusClass = this.statusClass(pokemon);
-            if (pokemon.hp.current == 0) {
-                return true;
-            } else if (statusClass != '') {
-                return true;
-            } else {
-                return false;
-            }
+        typeImage: function(type) {
+            return './assets/images/party/type/type-' + type.label.toLowerCase() + '.png';
         },
         statusImage: function(pokemon) {
             if (pokemon.hp.current == 0) {
@@ -114,7 +105,21 @@ Vue.component( "pokemon-card", {
             } else {
                 return pokemon.nickname;
             }
-        }
+        },
+        experienceRemaining: function(pokemon) {
+            const expGroup = exp_groups_table.find(group => pokemon.species === group.id)
+            const levelExp = experience_table.filter((expRange) => {
+              return expRange.level === pokemon.level+1
+                  || expRange.level === pokemon.level
+            })
+      
+            const totalExpForThisRange = levelExp[1][expGroup['levelling_type']] - levelExp[0][expGroup['levelling_type']]
+            const expLeftInThisRange = pokemon.exp - levelExp[0][expGroup['levelling_type']]
+
+            console.log((100/totalExpForThisRange) * expLeftInThisRange + '%')
+
+            return (100/totalExpForThisRange) * expLeftInThisRange + '%'
+        },
     },
     watch: {
         pokemon: {
