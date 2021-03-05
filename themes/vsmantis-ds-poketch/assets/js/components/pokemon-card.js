@@ -6,8 +6,11 @@ Vue.component( "pokemon-card", {
                     <span class="level">Lv. {{pokemon.level}}</span>
                     <img v-if="pokemon.isShiny == 1" class="shiny" src="./assets/images/party/shiny.png"/>
                 </div>
-                <div :class="{ 'pokemon__image': true, 'isDamaged': justTookDamage}">
+                <div v-if="!pokemon.isEgg" :class="{ 'pokemon__image': true, 'isDamaged': justTookDamage}">
                     <img :class="{ 'pokemon-fainted': pokemon.hp.current == 0 }" :src="imageSource(pokemon)">
+                </div>
+                <div v-if="pokemon.isEgg" class="pokemon__image">
+                    <img src="./assets/images/party/egg-sprite.png">
                 </div>
                 <div class="pokemon__nickname" v-if="!getHideSetting('nickname')">
                     {{ fixedNickname(pokemon) }}
@@ -109,7 +112,9 @@ Vue.component( "pokemon-card", {
             }
         },
         fixedNickname: function(pokemon) {
-            if (pokemon.nickname.includes(pokemon.speciesName, 0)) {
+            if (pokemon.isEgg) {
+                return 'EGG';
+            } else if (pokemon.nickname.includes(pokemon.speciesName, 0)) {
                 return pokemon.speciesName;
             } else {
                 return pokemon.nickname;
