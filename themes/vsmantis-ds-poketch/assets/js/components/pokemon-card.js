@@ -3,8 +3,8 @@ Vue.component( "pokemon-card", {
         <div class="pokemon__slot" :class="{ 'pokemon__empty': pokemon === null }">
             <div v-if="pokemon !== null">
                 <div class="pokemon__level" v-if="!getHideSetting('level')">
-                    <span class="level">Lv. {{pokemon.level}}</span>
-                    <img v-if="pokemon.isShiny == 1" class="shiny" src="./assets/images/party/shiny.png"/>
+                    <span v-if="!pokemon.isEgg" class="level">Lv. {{pokemon.level}}</span>
+                    <img v-if="pokemon.isShiny == 1 && !pokemon.isEgg" class="shiny" src="./assets/images/party/shiny.png"/>
                 </div>
                 <div v-if="!pokemon.isEgg" :class="{ 'pokemon__image': true, 'isDamaged': justTookDamage}">
                     <img :class="{ 'pokemon-fainted': pokemon.hp.current == 0 }" :src="imageSource(pokemon)">
@@ -17,18 +17,18 @@ Vue.component( "pokemon-card", {
                 </div>
                 <div class="pokemon__hp-bar" v-if="!getHideSetting('hp')">
                     <div class="progress" style="height: 16px;">
-                        <div :class="healthBarClass(pokemon)" v-bind:style="{width: healthBarPercent(pokemon) + '%'}" role="progressbar" :aria-valuenow="pokemon.hp.current" :aria-valuemin="0" :aria-valuemax="pokemon.hp.max"></div>
+                        <div v-if="!pokemon.isEgg" :class="healthBarClass(pokemon)" v-bind:style="{width: healthBarPercent(pokemon) + '%'}" role="progressbar" :aria-valuenow="pokemon.hp.current" :aria-valuemin="0" :aria-valuemax="pokemon.hp.max"></div>
                     </div>
                     <div class="progress" style="height: 14px;">
                         <div class="exp-bar"  v-bind:style="{ width: experienceRemaining(pokemon) }" role="expbar" :aria-valuenow="pokemon.hp.current" :aria-valuemin="0" :aria-valuemax="pokemon.hp.max"></div>
                     </div>
-                    <div class="pokemon__hp">
+                    <div v-if="!pokemon.isEgg" class="pokemon__hp">
                         <span class="text">{{ pokemon.hp.current }} / {{ pokemon.hp.max }}</span>
                     </div>
                 </div>
                 <div class="pokemon__info">
-                    <img class="pokemon__type" v-if="pokemon.types.length != 0" v-for="type in pokemon.types" :src="typeImage(type)"/>
-                    <img class="pokemon__status" v-if="statusImage(pokemon) != ''" :src="statusImage(pokemon)"/>
+                    <img class="pokemon__type" v-if="pokemon.types.length != 0 && !pokemon.isEgg" v-for="type in pokemon.types" :src="typeImage(type)"/>
+                    <img class="pokemon__status" v-if="statusImage(pokemon) != '' && !pokemon.isEgg" :src="statusImage(pokemon)"/>
                 </div>
             </div>
             <div v-else>

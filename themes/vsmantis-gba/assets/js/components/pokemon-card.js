@@ -28,9 +28,6 @@ Vue.component( "pokemon-card", {
                 </div>
             </div>
             <div v-else>
-                <div class="pokemon__image">
-                    <img src="./assets/images/pokeball-icon-22.png"/>
-                </div>
             </div>
         </div>
     `,
