@@ -3,7 +3,8 @@ Vue.component( "pokemon-card", {
         <div class="pokemon__slot" :class="{ 'pokemon__empty': pokemon === null }">
             <div v-if="pokemon !== null">
                 <div class="pokemon__level">
-                    <span v-if="!pokemon.isEgg" class="level">Lv. {{ pokemon.level }}</span>
+                    <img v-if="!pokemon.isEgg" class="gender" src="genderIcon(pokemon)"/>
+                    <span v-if="!pokemon.isEgg" class="level"><span>Lv. {{ pokemon.level }}</span>
                     <img v-if="pokemon.isShiny == 1 && !pokemon.isEgg" class="shiny" src="./assets/images/party/shiny.png"/>
                 </div>
                 <div v-if="!pokemon.isEgg" :class="{ 'pokemon__image': true, 'isDamaged': justTookDamage}">
@@ -122,6 +123,15 @@ Vue.component( "pokemon-card", {
             console.log((100/totalExpForThisRange) * expLeftInThisRange + '%')
 
             return (100/totalExpForThisRange) * expLeftInThisRange + '%'
+        },
+        genderIcon: function(pokemon) {
+            if (pokemon.isGenderless) {
+                return './assets/images/party/gender/gender-genderless.png';
+            } else if (pokemon.isFemale) {
+                return './assets/images/party/gender/gender-female.png';
+            } else {
+                return './assets/images/party/gender/gender-male.png';
+            }
         }
     },
     watch: {

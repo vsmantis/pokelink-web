@@ -26,7 +26,7 @@ Vue.component( "pokemon-card", {
                         <span class="text">{{ pokemon.hp.current }} / {{ pokemon.hp.max }}</span>
                     </div>
                 </div>
-                <div class="pokemon__info">
+                <div v-if="!pokemon.isEgg" class="pokemon__info">
                     <img class="pokemon__type" v-if="pokemon.types.length != 0 && !pokemon.isEgg" v-for="type in pokemon.types" :src="typeImage(type)"/>
                     <img class="pokemon__status" v-if="statusImage(pokemon) != '' && !pokemon.isEgg" :src="statusImage(pokemon)"/>
                 </div>
