@@ -47,9 +47,11 @@ Vue.component( "pokemon-card", {
     },
     methods: {
         imageSource: function(pokemon) {
+
             return 'https://assets.pokelink.xyz/assets/sprites/pokemon/trozei/' + pokemon.species + '.png';
         },
         healthBarPercent: function(pokemon) {
+
             if (pokemon.hp.max === pokemon.hp.current) {
                 return 100;
             } else {
@@ -57,8 +59,10 @@ Vue.component( "pokemon-card", {
             }
         },
         healthBarClass: function(pokemon) {
+
             var redHP = Math.ceil(pokemon.hp.max * 0.205);
             var yellowHP = Math.ceil(pokemon.hp.max * 0.515);
+            
             if (pokemon.hp.current == 0) {
                 return 'progress-bar grey';
             } else if (pokemon.hp.current <= redHP) {
@@ -70,9 +74,11 @@ Vue.component( "pokemon-card", {
             }
         },
         getHideSetting(setting) {
+
             return settings.theme.hide[setting] || false;
         },
         statusClass: function(pokemon) {
+
             if (pokemon.hp.current == 0) {
                 return 'status status-fainted';
             } else if (pokemon.status.brn) {
@@ -92,7 +98,9 @@ Vue.component( "pokemon-card", {
             }
         },
         statusContainerClass: function(pokemon) {
+
             var statusClass = this.statusClass(pokemon);
+
             if (pokemon.hp.current == 0) {
                 return 'pokemon__status fainted';
             } else if (statusClass != 'status status-normal') {
@@ -102,6 +110,7 @@ Vue.component( "pokemon-card", {
             }
         },
         fixedNickname: function(pokemon) {
+
             if (pokemon.isEgg) {
                 return 'EGG';
             } else if (pokemon.nickname.includes(pokemon.speciesName, 0)) {
@@ -111,10 +120,20 @@ Vue.component( "pokemon-card", {
             }
         },
         experienceRemaining: function(pokemon) {
-            const expGroup = {'levelling_type': 'medium_fast'};//exp_groups_table.find(group => pokemon.species === group.id)
+
+            const expCurveMod = settings.expCurveMod
+            var expGroup = exp_groups_table.find(group => pokemon.species === group.id)
+            
+            if (expCurveMod == ExpCurveMod.all) {
+                expGroup = {'levelling_type': 'medium_fast'};
+            } else if (expCurveMod == ExpCurveMod.legendaries) {
+                expGroup = legendaries.includes(pokemon.species) ? {'levelling_type': 'slow'} : {'levelling_type': 'medium_fast'};
+            } else if (expCurveMod == ExpCurveMod.strongLegendaries) {
+                expGroup = strongLegendaries.includes(pokemon.species) ? {'levelling_type': 'slow'} : {'levelling_type': 'medium_fast'};
+            }
+
             const levelExp = experience_table.filter((expRange) => {
-              return expRange.level === pokemon.level+1
-                  || expRange.level === pokemon.level
+                return expRange.level === pokemon.level + 1 || expRange.level === pokemon.level
             })
       
             const totalExpForThisRange = levelExp[1][expGroup['levelling_type']] - levelExp[0][expGroup['levelling_type']]
@@ -125,6 +144,7 @@ Vue.component( "pokemon-card", {
             return (100/totalExpForThisRange) * expLeftInThisRange + '%'
         },
         genderIcon: function(pokemon) {
+
             if (pokemon.isGenderless) {
                 return './assets/images/party/gender/gender-genderless.png';
             } else if (pokemon.isFemale) {
@@ -137,6 +157,7 @@ Vue.component( "pokemon-card", {
     watch: {
         pokemon: {
             handler (val, oldVal) {
+
                 try {
                     if (val.hp.current < oldVal.hp.current) {
                         this.justTookDamage = true
@@ -151,6 +172,7 @@ Vue.component( "pokemon-card", {
         }
     },
     data () {
+
         return {
             settings: {},
             justTookDamage: false

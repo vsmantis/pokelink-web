@@ -1,3 +1,5 @@
+const ExpCurveMod = Object.freeze({"default":0, "all":1, "legendaries":2, "strong_legendaries":3})
+
 var themeSettings = {
     theme: {
         name: 'vsmantis-gba',
@@ -14,5 +16,6 @@ var themeSettings = {
     },
     imgPaths:{
     	normal: 'https://pokelink.cybershade.org/assets/sprites/pokemon/trozei/'
-    }
+    },
+    expCurveMod: ExpCurveMod.default
 };
