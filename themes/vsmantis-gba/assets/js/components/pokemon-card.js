@@ -2,25 +2,31 @@ Vue.component( "pokemon-card", {
     template: `
         <div class="pokemon__slot" :class="{ 'pokemon__empty': pokemon === null }">
             <div v-if="pokemon !== null">
-                <div class="pokemon__level" v-if="!getHideSetting('level')">
-                    <span class="level">Lv. {{pokemon.level}}</span>
-                    <img v-if="pokemon.isShiny == 1" class="shiny" src="./assets/images/party/shiny.png"/>
+                <div class="pokemon__level">
+                    <span v-if="!pokemon.isEgg" class="level">Lv. {{ pokemon.level }}</span>
+                    <img v-if="pokemon.isShiny == 1 && !pokemon.isEgg" class="shiny" src="./assets/images/party/shiny.png"/>
                 </div>
-                <div :class="{ 'pokemon__image': true, 'isDamaged': justTookDamage}">
+                <div v-if="!pokemon.isEgg" :class="{ 'pokemon__image': true, 'isDamaged': justTookDamage}">
                     <img :class="{ 'pokemon-fainted': pokemon.hp.current == 0 }" :src="imageSource(pokemon)">
                 </div>
-                <div class="pokemon__nickname" v-if="!getHideSetting('nickname')">
+                <div v-if="pokemon.isEgg" class="pokemon__image">
+                    <img src="./assets/images/party/egg-sprite.png">
+                </div>
+                <div class="pokemon__nickname">
                     {{ fixedNickname(pokemon) }}
                 </div>
-                <div class="pokemon__hp-bar" v-if="!getHideSetting('hp')">
-                    <div class="progress" style="height: 15px;">
+                <div class="pokemon__bars">
+                    <div class="progress progress-hp">
                         <div :class="healthBarClass(pokemon)" v-bind:style="{width: healthBarPercent(pokemon) + '%'}" role="progressbar" :aria-valuenow="pokemon.hp.current" :aria-valuemin="0" :aria-valuemax="pokemon.hp.max"></div>
                     </div>
-                    <div class="pokemon__hp">
+                    <div class="progress progress-xp">
+                    <div class="exp-bar"  v-bind:style="{ width: experienceRemaining(pokemon) }" role="expbar" :aria-valuenow="pokemon.hp.current" :aria-valuemin="0" :aria-valuemax="pokemon.hp.max"></div>
+                    </div>
+                    <div v-if="!pokemon.isEgg" class="pokemon__hp">
                         <span class="text">{{ pokemon.hp.current }} / {{ pokemon.hp.max }}</span>
                     </div>
                 </div>
-                <div class="pokemon__bar" v-if="!getHideSetting('types')">
+                <div v-if="!pokemon.isEgg" class="pokemon__bar">
                     <span :class="'pokemon__types pokemon__types-' + type.label.toLowerCase()" v-if="pokemon.types.length != 0" v-for="type in pokemon.types">{{type.label}}</span>
                 </div>
                 <div :class="statusContainerClass(pokemon)" v-if="!getHideSetting('status')">
@@ -95,11 +101,27 @@ Vue.component( "pokemon-card", {
             }
         },
         fixedNickname: function(pokemon) {
-            if (pokemon.nickname.includes(pokemon.speciesName, 0)) {
+            if (pokemon.isEgg) {
+                return 'EGG';
+            } else if (pokemon.nickname.includes(pokemon.speciesName, 0)) {
                 return pokemon.speciesName;
             } else {
                 return pokemon.nickname;
             }
+        },
+        experienceRemaining: function(pokemon) {
+            const expGroup = exp_groups_table.find(group => pokemon.species === group.id)
+            const levelExp = experience_table.filter((expRange) => {
+              return expRange.level === pokemon.level+1
+                  || expRange.level === pokemon.level
+            })
+      
+            const totalExpForThisRange = levelExp[1][expGroup['levelling_type']] - levelExp[0][expGroup['levelling_type']]
+            const expLeftInThisRange = pokemon.exp - levelExp[0][expGroup['levelling_type']]
+
+            console.log((100/totalExpForThisRange) * expLeftInThisRange + '%')
+
+            return (100/totalExpForThisRange) * expLeftInThisRange + '%'
         }
     },
     watch: {
