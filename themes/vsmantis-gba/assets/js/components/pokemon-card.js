@@ -21,7 +21,7 @@ Vue.component( "pokemon-card", {
                         <div :class="healthBarClass(pokemon)" v-bind:style="{width: healthBarPercent(pokemon) + '%'}" role="progressbar" :aria-valuenow="pokemon.hp.current" :aria-valuemin="0" :aria-valuemax="pokemon.hp.max"></div>
                     </div>
                     <div class="progress progress-xp">
-                    <div class="exp-bar"  v-bind:style="{ width: experienceRemaining(pokemon) }" role="expbar" :aria-valuenow="pokemon.hp.current" :aria-valuemin="0" :aria-valuemax="pokemon.hp.max"></div>
+                    <div class="exp-bar"  v-bind:style="{ width: experienceRemaining(pokemon) }"></div>
                     </div>
                     <div v-if="!pokemon.isEgg" class="pokemon__hp">
                         <span class="text">{{ pokemon.hp.current }} / {{ pokemon.hp.max }}</span>
@@ -111,7 +111,7 @@ Vue.component( "pokemon-card", {
             }
         },
         experienceRemaining: function(pokemon) {
-            const expGroup = exp_groups_table.find(group => pokemon.species === group.id)
+            const expGroup = {'levelling_type': 'medium_fast'};//exp_groups_table.find(group => pokemon.species === group.id)
             const levelExp = experience_table.filter((expRange) => {
               return expRange.level === pokemon.level+1
                   || expRange.level === pokemon.level

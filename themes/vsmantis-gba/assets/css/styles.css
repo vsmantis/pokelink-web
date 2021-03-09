@@ -298,9 +298,9 @@ body {
 }
 
 .progress-bar.grey   { background: #646464; }
-.progress-bar.green  { background: #5EDB38; }
-.progress-bar.yellow { background: #FFCE39; }
-.progress-bar.red    { background: #FF584C; }
+.progress-bar.green  { background: #4fd825; }
+.progress-bar.yellow { background: #FFD200; }
+.progress-bar.red    { background: #ff4234; }
 
 .switchMedium-move {
     transition: none;
