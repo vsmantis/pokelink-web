@@ -3,9 +3,9 @@ Vue.component( "pokemon-card", {
         <div class="pokemon__slot" :class="{ 'pokemon__empty': pokemon === null }">
             <div v-if="pokemon !== null">
                 <div class="pokemon__level">
-                    <img v-if="!pokemon.isEgg" class="gender" src="genderIcon(pokemon)"/>
+                    <img v-if="!pokemon.isEgg && !getHideSetting('gender') && !(isGenderless(pokemon) && getHideSetting('genderless'))" class="gender" :src="genderIcon(pokemon)"/>
                     <span v-if="!pokemon.isEgg" class="level"><span>Lv. {{ pokemon.level }}</span>
-                    <img v-if="pokemon.isShiny == 1 && !pokemon.isEgg" class="shiny" src="./assets/images/party/shiny.png"/>
+                    <img v-if="pokemon.isShiny == 1 && !pokemon.isEgg && !getHideSetting('shiny')" class="shiny" src="./assets/images/party/shiny.png"/>
                 </div>
                 <div v-if="!pokemon.isEgg" :class="{ 'pokemon__image': true, 'isDamaged': justTookDamage}">
                     <img :class="{ 'pokemon-fainted': pokemon.hp.current == 0 }" :src="imageSource(pokemon)">
@@ -127,9 +127,9 @@ Vue.component( "pokemon-card", {
             if (expCurveMod == ExpCurveMod.all) {
                 expGroup = {'levelling_type': 'medium_fast'};
             } else if (expCurveMod == ExpCurveMod.legendaries) {
-                expGroup = legendaries.includes(pokemon.species) ? {'levelling_type': 'slow'} : {'levelling_type': 'medium_fast'};
+                expGroup = legendaries_table.includes(pokemon.species) ? {'levelling_type': 'slow'} : {'levelling_type': 'medium_fast'};
             } else if (expCurveMod == ExpCurveMod.strongLegendaries) {
-                expGroup = strongLegendaries.includes(pokemon.species) ? {'levelling_type': 'slow'} : {'levelling_type': 'medium_fast'};
+                expGroup = strong_legendaries_table.includes(pokemon.species) ? {'levelling_type': 'slow'} : {'levelling_type': 'medium_fast'};
             }
 
             const levelExp = experience_table.filter((expRange) => {
@@ -139,15 +139,30 @@ Vue.component( "pokemon-card", {
             const totalExpForThisRange = levelExp[1][expGroup['levelling_type']] - levelExp[0][expGroup['levelling_type']]
             const expLeftInThisRange = pokemon.exp - levelExp[0][expGroup['levelling_type']]
 
-            console.log((100/totalExpForThisRange) * expLeftInThisRange + '%')
+            // console.log((100/totalExpForThisRange) * expLeftInThisRange + '%')
 
             return (100/totalExpForThisRange) * expLeftInThisRange + '%'
         },
+        isGenderless: function(pokemon) {
+
+            return gender_threshold = gender_table.find(group => pokemon.species === group.id).threshold == 255
+        },
         genderIcon: function(pokemon) {
 
-            if (pokemon.isGenderless) {
+            const gender_threshold = gender_table.find(group => pokemon.species === group.id).threshold
+            const personality_gender_value = pokemon.pid % 256;
+            
+            console.log("=======");
+            console.log(gender_threshold);
+            console.log(personality_gender_value);
+
+            if (gender_threshold == 255) {
                 return './assets/images/party/gender/gender-genderless.png';
-            } else if (pokemon.isFemale) {
+            } else if (gender_threshold == 254) {
+                return './assets/images/party/gender/gender-female.png';
+            } else if (gender_threshold == 0) {
+                return './assets/images/party/gender/gender-male.png';
+            } else if (personality_gender_value < gender_threshold) {
                 return './assets/images/party/gender/gender-female.png';
             } else {
                 return './assets/images/party/gender/gender-male.png';

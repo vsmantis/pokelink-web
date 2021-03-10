@@ -80,8 +80,8 @@ body {
 .pokemon__image {
     background-image: url(../images/party/pokeball.png);
     background-size: cover;
-    height: 78px;
-    width: 78px;
+    height: 70px;
+    width: 70px;
     margin: 8px auto 4px;;
     filter: saturate(120%);
     z-index: 1;
@@ -105,7 +105,7 @@ body {
     transform: translate(-50%, -50%) scale(0.8);
     perspective: 1000px;
     height: 110px;
-    margin-top: -3px;
+    margin-top: 0px;
 }
 
 .pokemon__image.isDamaged > img {
@@ -122,25 +122,14 @@ body {
 /* NICKNAME */
 
 .pokemon__nickname {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     letter-spacing: 0px;
-    font-weight: 600;
+    font-weight: 800;
     text-align: center;
     text-overflow: ellipsis;
-    margin: 0px 12px 4px;
+    margin: 0px 12px 7px;
     overflow: hidden;
 }
-
-/* .pokemon__nickname-shiny {
-    position: absolute;
-    color: rgba(0,0,0,0%);
-    background-image: url(../images/party/shiny.png);
-    background-size: cover;
-    height: 18px;
-    width: 18px;
-    right: 8px;
-    top: 5px;
-} */
 
 .progress-bar, .progress {
     border-radius: 0px;
@@ -163,27 +152,14 @@ body {
 }
 
 .pokemon__bar > span {
-    font-family: 'Rubik Mono One', sans-serif;
-    -webkit-text-stroke: 1px black;
-    font-size: 1rem;
-    color: white;
-    text-shadow: 2px 2px 1px rgba(0,0,0,0.5);
-    border-radius: 14px;
     padding: 0px;
     width:100%;
     text-align: center;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 2px;
 }
 
 .pokemon__hp {
-    font-family: 'Rubik Mono One', sans-serif;
     text-align: center;
     text-align: center;
-    margin-top: -15.01px;
-    font-size: 1.1rem;
-    -webkit-text-stroke: .5px white;
 }
 
 .badges {}
@@ -276,10 +252,7 @@ body {
 }
 
 .pokemon__bars {
-    margin-left: 12px;
-    margin-right: 12px;
-    margin-top: -4px;
-    margin-bottom: 4px;
+    margin: -4px 12px 6px;
 }
 
 .pokemon__hp {
@@ -288,7 +261,7 @@ body {
     font-size: 1.2rem;
     -webkit-text-stroke: 0px rgba(0, 0, 0, 0);
     bottom: 14px;
-    font-weight: 600;
+    font-weight: 800;
     right: 12px;
 }
 
@@ -332,7 +305,7 @@ body {
 }
 
 .pokemon__types:nth-child(2) {
-    left: 35px;
+    left: 37px;
 }
 
 .pokemon__types-normal   { background-image: url('../images/party/type/type-normal.png');   }
@@ -363,7 +336,7 @@ body {
     height: 22px;
     position: absolute;
     right: 12px;
-    bottom: 12px;
+    bottom: 11px;
     animation: status-container-animation 5s infinite linear;
 }
 

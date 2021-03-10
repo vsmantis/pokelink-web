@@ -4,7 +4,10 @@ var themeSettings = {
     theme: {
         name: 'vsmantis-gba',
         hide: {
+            gender: false,
+            genderless: true,
             level: false,
+            shiny: false,
             nickname: false,
             hp: false,
             types: false,
