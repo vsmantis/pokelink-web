@@ -18,24 +18,32 @@ body {
     font-family: 'Heebo', sans-serif;
 }
 
+.theme__dark {
+    color: white;
+}
+
 .pokemon__list {
     margin: 0 10px 20px;
-    width: 460px;
-    height: 398px;
+    width: 470px;
+    height: 397px;
     background-color: transparent !important;
     display: block;
 }
 
 .pokemon__slot {
     position: relative;
-    width: 148px;
+    width: 152px;
     height: 195px;
     overflow: hidden;
     float: left;
-    margin: 0px 8px 8px 0px;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0px 4px 4px 0px rgb(0, 0, 0, 20%);
+    margin: 0px 7px 7px 0px;
+    /* background-color: white; */
+    /* border-radius: 15px; */
+    /* box-shadow: 0px 4px 4px 0px rgb(0, 0, 0, 20%); */
+}
+
+.theme__dark .pokemon__slot {
+    background-color: rgba(255,255,255,0.15);
 }
 
 .pokemon__slot:nth-child(3), .pokemon__slot:nth-child(6) {
@@ -48,6 +56,11 @@ body {
 
 .pokemon__slot.pokemon__empty {
     background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: none;
+}
+
+.theme__dark .pokemon__slot.pokemon__empty {
+    background-color: rgba(255, 255, 255, 0.1);
     box-shadow: none;
 }
 
@@ -89,6 +102,10 @@ body {
 
 .pokemon__image > img.pokemon-fainted {
     filter: saturate(0%) contrast(50%) brightness(150%);
+}
+
+.theme__dark .pokemon__image > img.pokemon-fainted {
+    filter: saturate(0%) contrast(50%) brightness(60%);
 }
 
 .pokemon__image.pokemon__egg img { 
@@ -142,6 +159,10 @@ body {
     border-style: solid;
     border-color: #000000;
     border-width: 2px;
+}
+
+.theme__dark .progress { 
+    background: #3d3d3d;
 }
 
 .pokemon__bar {
@@ -339,6 +360,10 @@ body {
     animation: status-container-animation 5s infinite linear;
     overflow: hidden;
     border-radius: 4px;
+}
+
+.theme__dark .pokemon__status {
+    background-color: #5a5a5a
 }
 
 .pokemon__status.fainted {
